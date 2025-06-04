@@ -20,7 +20,9 @@ EMBEDDING_SIZE = 1536
 EMBEDDINGS_PATH_SMALL = "/Users/anush/Desktop/NLWeb/data/sites/embeddings/small"
 
 # Initialize Qdrant client
-client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY, path=QDRANT_PATH)
+#client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY, path=QDRANT_PATH)
+client = QdrantClient(url="http://localhost:6333")
+
 
 
 def recreate_collection(collection_name, vector_size):

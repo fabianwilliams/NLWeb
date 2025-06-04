@@ -107,6 +107,10 @@ class QdrantVectorClient:
     
     def _create_client_params(self):
         """Extract client parameters from endpoint config."""
+
+        """
+        # ORIGINAL IMPLEMENTATION (COMMENTED OUT FOR FORCING HTTP-ONLY MODE)
+
         params = {}
         logger.debug(f"Creating client parameters for endpoint: {self.endpoint_name}")
 
@@ -131,9 +135,28 @@ class QdrantVectorClient:
             default_path = self._resolve_path("../data/db")
             logger.debug(f"Using default local Qdrant database path: {default_path}")
             params["path"] = default_path
-        
+
         logger.debug(f"Final client parameters: {params}")
         return params
+        """
+
+        # ✅ FORCED HTTP-ONLY MODE
+        #url = self.api_endpoint
+        #Based on what ChatGPT said, we should always use the URL endpoint
+        url = self.endpoint_config.url or self.api_endpoint
+        logger.debug(f"Resolved Qdrant URL from config: {url}")
+
+        api_key = self.api_key
+
+        if url and url.startswith(("http://", "https://")):
+            logger.debug(f"Using Qdrant server URL: {url}")
+            params = {"url": url}
+            if api_key:
+                params["api_key"] = api_key
+            return params
+        else:
+            raise ValueError("No valid Qdrant URL provided in config. Refusing fallback to local storage.")
+
     
     async def _get_qdrant_client(self) -> AsyncQdrantClient:
         """

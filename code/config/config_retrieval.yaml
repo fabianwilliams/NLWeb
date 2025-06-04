@@ -1,27 +1,26 @@
-preferred_endpoint: azure_ai_search
+preferred_endpoint: qdrant_local
 
 endpoints:
+  qdrant_local:
+    url: http://localhost:6333
+    index_name: ContentfulFAQs
+    db_type: qdrant
+
   azure_ai_search:
     api_key_env: AZURE_VECTOR_SEARCH_API_KEY
     api_endpoint_env: AZURE_VECTOR_SEARCH_ENDPOINT
     index_name: embeddings1536
     db_type: azure_ai_search
-    name: NLWeb_Crawl
-
-  # Milvus is still under development and not yet supported. 
-  # milvus_1:
-  #   database_path: ../milvus/milvus_prod.db
-  #   index_name: prod_collection
-  #   db_type: milvus
 
   # Option 1: Local file-based Qdrant storage
-  qdrant_local:
+  #qdrant_local:
     # Use local file-based storage with a specific path
-    database_path: "../data/db"
+    #database_path: "../data/db"
+    #url: http://localhost:6333
     # Set the collection name to use
-    index_name: nlweb_collection
+    #index_name: ContentfulFAQs
     # Specify the database type
-    db_type: qdrant
+    #db_type: qdrant
     
   # Option 2: Remote Qdrant server
   qdrant_url:

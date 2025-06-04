@@ -26,3 +26,9 @@ chatbot_instructions:
     3. Include relevant details like location, date, and description after the link.
     Every result should be presented with the name as a clickable link, an image if available,
     and key information about the event.
+
+site_config:
+  ContentfulFAQ:
+    label: "FAQs from Contentful"
+    type: website
+    priority: 2

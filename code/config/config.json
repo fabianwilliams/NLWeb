@@ -1,0 +1,10 @@
+{
+  "retrieval_endpoints": {
+    "qdrant_local": {
+      "type": "qdrant",
+      "url": "http://localhost:6333",
+      "collection": "ContentfulFAQs"
+    }
+  }
+}
+
